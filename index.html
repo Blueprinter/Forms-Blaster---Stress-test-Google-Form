@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= HtmlService.createHtmlOutputFromFile("CSS_Index").getContent() ?>
+  </head>
+  <body>
+    <div id="content">
+      <div id="appTitle">
+        <u><span id="titleUnderline">Forms Blaster</span></u>
+      </div>
+      <div class="innerDiv">
+        <label for="idFormID">Form ID to Submit the response to</label><br>
+        <input id="idFormID" type="text" style="width:50%" 
+          value="<?!= getFormID() ?>" placeholder="Form ID to Submit the Response To. Enter Form ID or Hard Code in Code.gs">
+      </div>
+      
+      <div class="innerDiv">
+        <button onmouseup="blast()">Blast It!</button>
+      </div>
+    </div>
+  </body>
+
+  <script>
+     function blast() {
+       var fileID;
+       
+       fileID = document.getElementById('idFormID').value;
+       
+       google.script.run.blastOne(fileID);//Invoke two server functions to run concurrently
+       google.script.run.blastTwo(fileID);
+  
+     };
+  </script>
+</html>
+
+
